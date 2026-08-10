@@ -1,4 +1,4 @@
 # SCHOOL MANAGEMENT APPLICATION
 
 * Students management : scores, group
-* Teachers management : course, salary
+* Teachers management : course
