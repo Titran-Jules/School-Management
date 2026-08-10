@@ -1,1 +1,23 @@
 @import "tailwindcss";
+
+:root {
+  --paper: #EDE9DE;
+  --paper-raised: #F6F3EA;
+  --paper-dim: #E1DBC9;
+  --ink: #22283B;
+  --ink-soft: #61678A;
+  --rule: #C7BFA8;
+  --burgundy: #7B3232;
+  --burgundy-dim: #F0E2DE;
+  --sage: #4B6358;
+  --sage-dim: #E4EBE4;
+  --rust: #A23E3E;
+  --rust-dim: #F5E4E1;
+
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body: 'IBM Plex Sans', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+}
+
+.font-display { font-family: var(--font-display); }
+.font-body { font-family: var(--font-body); }
