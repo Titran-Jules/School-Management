@@ -9,7 +9,7 @@ export class TeacherService {
         return safeTeacher;
     }
 
-    async getAllTeacher(): Promise<TeacherResponseDTO[]> {
+    async getAllTeachers(): Promise<TeacherResponseDTO[]> {
         const teachers = await this.teacherRepository.findAll();
         return teachers.map((t) => this.formatTeacherResponse(t));
     }
