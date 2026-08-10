@@ -1,9 +1,17 @@
 import express, { Application } from "express";
+import cors from "cors";
+
 import studentRoutes from "./routes/student.route.js";
 import teacherRoutes from "./routes/teacher.route.js";
 import ueRoutes from "./routes/ue.route.js";
 
 const app: Application = express();
+
+app.use(cors({
+    origin: "http://localhost:5173",
+    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization']
+}));
 
 app.use(express.json());
 
