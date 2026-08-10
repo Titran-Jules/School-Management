@@ -17,7 +17,7 @@ export class StudentService {
     async getStudentById(id: string): Promise<StudentResponseDTO> {
         const student = await this.studentRepository.findById(id);
         if (!student) {
-            throw new Error('Student not foudn');
+            throw new Error('Student not found');
         }
         return this.formatStudentResponse(student);
     }
