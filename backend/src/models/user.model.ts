@@ -16,8 +16,12 @@ export interface RegisterUserDTO {
     firstName: string;
     lastName: string;
     email: string;
-    passwordHash: string;
+    password: string;
     role: UserRole;
+}
+
+export interface CreateUserInDbDTO extends Omit<RegisterUserDTO, "password"> {
+    passwordHash: string;
 }
 
 export type UserResponseDTO = Omit<User, 'passwordHash'>;
