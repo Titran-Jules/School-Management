@@ -2,6 +2,7 @@ export type UserRole = 'STUDENT' | 'TEACHER' | 'ADMIN';
 
 export interface User {
     id: string;
+    ref: string;
     firstName: string;
     lastName: string;
     email: string;
@@ -11,6 +12,7 @@ export interface User {
 }
 
 export interface RegisterUserDTO {
+    ref: string;
     firstName: string;
     lastName: string;
     email: string;
