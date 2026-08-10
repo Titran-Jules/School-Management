@@ -1,4 +1,4 @@
-import { Student, CreateStudentDTO, Group } from "../models/student.model.js";
+import { Student, CreateStudentDTO, CreateStudentInDbDTO, Group } from "../models/student.model.js";
 import { db } from "../config/db.js";
 
 export class StudentRepository {
@@ -47,7 +47,7 @@ export class StudentRepository {
         return result.rows[0] || null;
     }
 
-    async updateAll(id: string, data: CreateStudentDTO): Promise<Student | null> {
+    async updateAll(id: string, data: CreateStudentInDbDTO): Promise<Student | null> {
         const client = await db.connect();
 
         try {
@@ -107,13 +107,13 @@ export class StudentRepository {
         await db.query(query, [newGroup, id]);
     }
 
-    async delete(id: string): Promise<boolean> {
+    async deleteStudent(id: string): Promise<boolean> {
         const query = `DELETE FROM users WHERE id = $1 AND role = 'STUDENT'`;
         const result = await db.query(query, [id]);
         return (result.rowCount ?? 0) > 0;
     }
 
-    async create(data: CreateStudentDTO): Promise<Student> {
+    async create(data: CreateStudentInDbDTO): Promise<Student> {
         const client = await db.connect();
 
         try {

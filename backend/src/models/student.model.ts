@@ -1,4 +1,4 @@
-import { User, CreateUserInDbDTO } from "./user.model.js";
+import { User, RegisterUserDTO } from "./user.model.js";
 
 export type GradeLevel = 'L1' | 'L2' | 'L3';
 
@@ -9,7 +9,13 @@ export interface Student extends User {
     group: Group;
 }
 
-export interface CreateStudentDTO extends CreateUserInDbDTO  {
+export interface CreateStudentDTO extends RegisterUserDTO  {
     gradeLevel: Student['gradeLevel'];
     group: Student['group'];
 }
+
+export interface CreateStudentInDbDTO extends Omit<CreateStudentDTO, 'password'> {
+    passwordHash: string;
+}
+
+export type StudentResponseDTO = Omit<Student, 'passwordHash'>;
