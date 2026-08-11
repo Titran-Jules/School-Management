@@ -1,4 +1,7 @@
 # SCHOOL MANAGEMENT APPLICATION
 
-* Students management : scores, group
-* Teachers management : course, salary
+This application helps school to manage students, teachers.
+
+* /api/students
+* /api/teachers
+* /api/ues
