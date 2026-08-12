@@ -5,18 +5,19 @@ dotenv.config();
 
 const { Pool } = pg;
 
+const connectionString = process.env.DATABASE_URL;
+
+const isLocal = !connectionString || connectionString.includes("localhost") || connectionString.includes("127.0.0.1");
+
 export const db = new Pool({
-    connectionString: process.env.DATABASE_URL,
-    ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false,
-    max: 10,
-    idleTimeoutMillis: 30000,
+    connectionString,
+    ssl: isLocal ? false : { rejectUnauthorized: false }
 });
 
 db.on('connect', () => {
-    console.log("Connexion to school_db database!");
+    console.log("Successfuly connected to the db!");
 });
 
 db.on('error', (err) => {
-    console.log("Error: ", err);
-    process.exit(-1);
+    console.error("Error PostgreSQL :", err);
 });
