@@ -8,20 +8,20 @@ export class AuthService {
     async login(ref: string, passwordPlain: string) {
         const user = await this.authRepository.getUserAccount(ref); 
 
-        if (!user) throw new Error("Ref invalid!");
+        if (!user) throw new Error("INVALID_REF");
 
         const isValid = await PasswordSecurity.compare(passwordPlain, user.passwordHash);
 
-        if (!isValid) throw new Error("Password invalid!");
+        if (!isValid) throw new Error("INVALID_PASSWORD");
 
         const token = JwtSecurity.generateToken({
             userId: user.id,
             role: user.role,
         });
 
-        return ({
+        return {
             token,
             user: { id: user.id, ref: user.ref, role: user.role }
-        });
+        };
     }
 }
