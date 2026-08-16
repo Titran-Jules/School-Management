@@ -27,6 +27,12 @@ export interface UserAuth {
     passwordHash: string;
 }
 
+export interface UserLogin {
+    id: string;
+    ref: string;
+    role: UserRole;
+}
+
 export interface CreateUserInDbDTO extends Omit<RegisterUserDTO, "password"> {
     passwordHash: string;
 }

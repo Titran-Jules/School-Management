@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { api } from '../services/api';
 import type { Student, Teacher, UE } from '../types/types';
 
-export function useSchoolData() {
+export const useSchoolData = () => {
   const [students, setStudents] = useState<Student[]>([]);
   const [teachers, setTeachers] = useState<Teacher[]>([]);
   const [ues, setUes] = useState<UE[]>([]);
