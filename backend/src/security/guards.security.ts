@@ -1,6 +1,6 @@
 import { Response, Request, NextFunction } from "express";
 import { JwtSecurity, JwtPayload } from "./jwt.security.js";
-import { Role } from "./role.security.js";
+import { UserRole } from "../models/user.model.js";
 
 export interface AuthentificatedRequest extends Request {
     user?: JwtPayload;
@@ -23,7 +23,7 @@ export const authGuard = (req: AuthentificatedRequest, res: Response, next: Next
     }
 };
 
-export const roleGuard = (...allowedRole: Role[]) => {
+export const roleGuard = (...allowedRole: UserRole[]) => {
     return (req: AuthentificatedRequest, res: Response, next: NextFunction) => {
         if (!req.user || !allowedRole.includes(req.user.role)) {
             return res.status(403).json({ message: 'Access Forbidden'});

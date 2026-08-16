@@ -1,9 +1,9 @@
 import jwt from "jsonwebtoken";
-import { Role } from "./role.security.js";
+import { UserRole } from "../models/user.model.js";
 
 export interface JwtPayload {
     userId: string;
-    role: Role;
+    role: UserRole;
 }
 
 const JWT_SECRET = process.env.JWT_SECRET || 'no jwt secret found';
