@@ -8,7 +8,7 @@ interface TeacherModalProps {
   onCreate: (data: any) => Promise<void>;
 }
 
-export function TeacherModal({ ues, onClose, onCreate }: TeacherModalProps) {
+export const TeacherModal = ({ ues, onClose, onCreate }: TeacherModalProps) => {
   const [form, setForm] = useState({
     ref: '', firstName: '', lastName: '', email: '', password: '',
     selectedUeIds: [] as string[],
