@@ -20,6 +20,19 @@ export interface RegisterUserDTO {
     role: UserRole;
 }
 
+export interface UserAuth {
+    id: string;
+    ref: string;
+    role: UserRole;
+    passwordHash: string;
+}
+
+export interface UserLogin {
+    id: string;
+    ref: string;
+    role: UserRole;
+}
+
 export interface CreateUserInDbDTO extends Omit<RegisterUserDTO, "password"> {
     passwordHash: string;
 }

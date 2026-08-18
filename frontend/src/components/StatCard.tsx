@@ -4,7 +4,7 @@ interface StatCardsProps {
   ueCount: number;
 }
 
-export function StatCards({ studentCount, teacherCount, ueCount }: StatCardsProps) {
+export const StatCards = ({ studentCount, teacherCount, ueCount }: StatCardsProps) => {
   const cards = [
     { label: 'Étudiants inscrits', value: studentCount, tone: 'text-[var(--ink)]' },
     { label: 'Enseignants', value: teacherCount, tone: 'text-[var(--ink)]' },

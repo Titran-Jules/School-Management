@@ -7,7 +7,7 @@ interface StudentsTableProps {
   onDelete: (id: string) => void;
 }
 
-export function StudentsTable({ students, loading, onDelete }: StudentsTableProps) {
+export const StudentsTable = ({ students, loading, onDelete }: StudentsTableProps) => {
   if (loading) {
     return (
       <div className="p-12 text-center text-var(--ink-soft) text-sm font-mono">
