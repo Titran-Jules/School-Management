@@ -9,7 +9,7 @@ interface StudentModalProps {
 
 const GROUPS: Group[] = ['N1', 'N2', 'N3', 'K1', 'K2', 'K3', 'J1', 'J2', 'J3'];
 
-export function StudentModal({ onClose, onCreate }: StudentModalProps) {
+export const StudentModal = ({ onClose, onCreate }: StudentModalProps) => {
   const [form, setForm] = useState({
     ref: '', firstName: '', lastName: '', email: '', password: '',
     gradeLevel: 'L1' as GradeLevel, group: 'N1' as Group,

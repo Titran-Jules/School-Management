@@ -1,5 +1,6 @@
 import { TeacherRepository } from "../repositories/teacher.repository.js";
 import { Teacher, CreateTeacherDTO, UpdateTeacherDTO, TeacherResponseDTO } from "../models/teacher.model.js";
+import { PasswordSecurity } from "../security/password.security.js";
 
 export class TeacherService {
     constructor(private teacherRepository: TeacherRepository) {}
@@ -28,14 +29,14 @@ export class TeacherService {
             throw new Error('Email unavailable');
         }
 
-        const dummyPasswordHash = `hashed_${data.password}`;
+        const passwordSecurity = await PasswordSecurity.hash(data.password);
 
         const newTeacher = await this.teacherRepository.create({
             ref: data.ref,
             firstName: data.firstName,
             lastName: data.lastName,
             email: data.email,
-            passwordHash: dummyPasswordHash,
+            passwordHash: passwordSecurity,
             role: 'TEACHER',
             ueIds: data.ueIds
         });
@@ -51,7 +52,7 @@ export class TeacherService {
 
         let passwordHash: string | undefined = undefined;
         if (data.password) {
-            passwordHash = `hashed_${data.password}`;
+            passwordHash = await PasswordSecurity.hash(data.password);
         }
 
         const updatedTeacher = await this.teacherRepository.update(id, {

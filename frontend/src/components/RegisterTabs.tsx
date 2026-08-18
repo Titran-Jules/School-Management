@@ -8,13 +8,13 @@ interface RegisterTabsProps {
   onRegister: () => void;
 }
 
-export function RegisterTabs({
+export const RegisterTabs = ({
   activeTab,
   onTabChange,
   studentCount,
   teacherCount,
   onRegister,
-}: RegisterTabsProps) {
+}: RegisterTabsProps) => {
   return (
     <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4">
       <div className="flex">

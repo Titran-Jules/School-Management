@@ -4,6 +4,10 @@ import cors from "cors";
 import studentRoutes from "./routes/student.route.js";
 import teacherRoutes from "./routes/teacher.route.js";
 import ueRoutes from "./routes/ue.route.js";
+import loginRoutes from "./routes/auth.route.js";
+
+import { UserRole } from "./models/user.model.js";
+import { authGuard, roleGuard } from "./security/guards.security.js";
 
 const app: Application = express();
 
@@ -15,8 +19,9 @@ app.use(cors({
 
 app.use(express.json());
 
-app.use("/api/students", studentRoutes);
-app.use("/api/teachers", teacherRoutes);
-app.use("/api/ues", ueRoutes);
+app.use("/api/students", authGuard, roleGuard('ADMIN', 'TEACHER'), studentRoutes);
+app.use("/api/teachers", authGuard, roleGuard('ADMIN'), teacherRoutes);
+app.use("/api/ues", authGuard, ueRoutes);
+app.use("/api/auth", loginRoutes);
 
 export default app;
