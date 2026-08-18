@@ -1,5 +1,6 @@
 import { StudentRepository } from '../repositories/student.repository.js';
 import { Student, CreateStudentDTO, StudentResponseDTO, Group } from '../models/student.model.js';
+import { PasswordSecurity } from '../security/password.security.js';
 
 export class StudentService {
     constructor(private studentRepository: StudentRepository) {}
@@ -28,14 +29,14 @@ export class StudentService {
             throw new Error('REF unavailable');
         }
 
-        const dummyPasswordHash = `hashed_${data.password}`;
+        const passwordSecurity = await PasswordSecurity.hash(data.password);
 
         const newStudent = await this.studentRepository.create({
             ref: data.ref,
             firstName: data.firstName,
             lastName: data.lastName,
             email: data.email,
-            passwordHash: dummyPasswordHash,
+            passwordHash: passwordSecurity,
             role: 'STUDENT',
             gradeLevel: data.gradeLevel,
             group: data.group
@@ -50,11 +51,11 @@ export class StudentService {
             throw new Error('Student not found');
         }
 
-        const dummyPasswordHash = data.password ? `hashed_${data.password}` : existing.passwordHash;
+        const newPassword = data.password ? await PasswordSecurity.hash(data.password) : existing.passwordHash;
 
         const updatedStudent = await this.studentRepository.updateAll(id, {
             ...data,
-            passwordHash: dummyPasswordHash,
+            passwordHash: newPassword,
             role: 'STUDENT'
         });
 
