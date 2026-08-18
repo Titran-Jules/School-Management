@@ -23,7 +23,7 @@ export class StudentController {
             res.status(200).json(student);
         } catch (error: any) {
             if (error.message === 'Student not found') {
-                res.status(404).json({ message: 'Étudiant non trouvé' });
+                res.status(404).json({ message: 'Student not found' });
                 return;
             }
             res.status(500).json({ message: 'Error server', detail: error.message });
