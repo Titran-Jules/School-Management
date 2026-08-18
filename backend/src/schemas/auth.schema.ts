@@ -13,9 +13,9 @@ export const studentRegistrationSchema = z.object({
         message: 'The ref must begin with STD and contains 5 int.'
     }),
 
-    firstName: z.string().nonempty(),
+    firstName: z.string().min(1, "first name is required"),
 
-    lastName: z.string().nonempty(),
+    lastName: z.string().min(1, "last name is required"),
 
     email: z.string()
             .email('Email format not valid')
@@ -23,10 +23,10 @@ export const studentRegistrationSchema = z.object({
                 message: "Email must begin with hei."
             }),
 
-    passwordHash: z.string().min(8, 'Password must be have at least 8 characters'),
+    password: z.string().min(8, 'Password must be have at least 8 characters'),
 
-    gradeLevel: z.string().min(2, "Grade level is required"),
-    group: z.string().min(2, "Group is required"),
+    gradeLevel: z.string().min(1, "Grade level is required"),
+    group: z.string().min(1, "Group is required"),
 });
 
 export const teacherRegistrationSchema = z.object({
@@ -44,6 +44,6 @@ export const teacherRegistrationSchema = z.object({
                 message: "Email must begin with hei."
             }),
 
-    passwordHash: z.string().min(8, 'Password must be have at least 8 characters'),
+    password: z.string().min(8, 'Password must be have at least 8 characters'),
     ueIds: z.array(z.string()).default([]),
 });

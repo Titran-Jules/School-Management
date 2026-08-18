@@ -7,6 +7,7 @@ export const validateBody = (schema: ZodSchema) => {
             req.body = schema.parse(req.body);
             next();
         } catch (error) {
+            console.log("Erreurs Zod :", error);
             if (error instanceof ZodError) {
                 return res.status(422).json({
                     message: 'Data invalid',

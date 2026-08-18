@@ -21,7 +21,7 @@ app.use(express.json());
 
 app.use("/api/students", authGuard, roleGuard('ADMIN', 'TEACHER'), studentRoutes);
 app.use("/api/teachers", authGuard, roleGuard('ADMIN'), teacherRoutes);
-app.use("/api/ues", authGuard, ueRoutes);
+app.use("/api/ues", authGuard, roleGuard('ADMIN', 'TEACHER'), ueRoutes);
 app.use("/api/auth", loginRoutes);
 
 export default app;
