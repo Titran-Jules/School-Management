@@ -1,6 +1,6 @@
-import { AuthRepository } from "../repositories/auth.repository.js";
-import { PasswordSecurity } from "../security/password.security.js";
-import { JwtSecurity } from "../security/jwt.security.js";
+import { AuthRepository } from "../repositories/authRepository.js";
+import { PasswordSecurity } from "../security/passwordSecurity.js";
+import { JwtSecurity } from "../security/jwtSecurity.js";
 
 export class AuthService {
     constructor(private authRepository: AuthRepository) {}

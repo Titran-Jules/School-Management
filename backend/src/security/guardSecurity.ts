@@ -1,6 +1,6 @@
 import { Response, Request, NextFunction } from "express";
-import { JwtSecurity, JwtPayload } from "./jwt.security.js";
-import { UserRole } from "../models/user.model.js";
+import { JwtSecurity, JwtPayload } from "./jwtSecurity.js";
+import { UserRole } from "../models/userModel.js";
 
 export interface AuthentificatedRequest extends Request {
     user?: JwtPayload;

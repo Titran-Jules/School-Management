@@ -1,5 +1,5 @@
-import { UeRepository } from '../repositories/ue.repository.js';
-import { UE, CreateUeDTO } from '../models/ue.model.js';
+import { UeRepository } from '../repositories/ueRepository.js';
+import { UE, CreateUeDTO } from '../models/ueModel.js';
 
 export class UeService {
     constructor(private ueRepository: UeRepository) {}
