@@ -8,7 +8,7 @@ export const api = {
     const res = await fetch(`${API_URL}/api/students`, {
       headers: {'Authorization': `Bearer ${token}`}
     });
-    if (!res.ok) throw new Error('Erreur lors du chargement des étudiants');
+    if (!res.ok) throw new Error('Error during student loading');
     return res.json();
   },
 
@@ -22,7 +22,7 @@ export const api = {
     });
     if (!res.ok) {
       const err = await res.json();
-      throw new Error(err.message || 'Échec de la création');
+      throw new Error(err.message || 'POST failed');
     }
     return res.json();
   },
@@ -32,14 +32,14 @@ export const api = {
       method: 'DELETE',
       headers: {'Authorization': `Bearer ${token}`}
      });
-    if (!res.ok) throw new Error('Échec de la suppression');
+    if (!res.ok) throw new Error('DELETE failed');
   },
 
   async getTeachers(): Promise<Teacher[]> {
     const res = await fetch(`${API_URL}/api/teachers`, {
       headers: {'Authorization': `Bearer ${token}`}
     });
-    if (!res.ok) throw new Error('Erreur lors du chargement des enseignants');
+    if (!res.ok) throw new Error('Error during teachers loading');
     return res.json();
   },
 
@@ -51,7 +51,7 @@ export const api = {
     });
     if (!res.ok) {
       const err = await res.json();
-      throw new Error(err.message || 'Échec de la création');
+      throw new Error(err.message || 'POST failed');
     }
     return res.json();
   },
@@ -61,14 +61,27 @@ export const api = {
       method: 'DELETE',
       headers: {'Authorization': `Bearer ${token}`} 
     });
-    if (!res.ok) throw new Error('Échec de la suppression');
+    if (!res.ok) throw new Error('DELETE failed');
   },
 
   async getUes(): Promise<UE[]> {
     const res = await fetch(`${API_URL}/api/ues`, {
       headers: {'Authorization': `Bearer ${token}`}
     });
-    if (!res.ok) throw new Error('Erreur lors du chargement des UEs');
+    if (!res.ok) throw new Error('Error during UEs loading');
+    return res.json();
+  },
+
+  async createUe(data: any): Promise<UE> {
+    const res = await fetch(`${API_URL}/api/ues`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`},
+      body: JSON.stringify(data)
+    });
+    if (!res.ok) {
+      const err = await res.json();
+      throw new Error(err.message);
+    }
     return res.json();
   }
 };
