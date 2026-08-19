@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
-import { StudentRepository } from '../repositories/student.repository.js';
-import { StudentService } from '../services/student.service.js';
+import { StudentRepository } from '../repositories/studentRepository.js';
+import { StudentService } from '../services/studentService.js';
 
 const studentRepository = new StudentRepository();
 const studentService = new StudentService(studentRepository);

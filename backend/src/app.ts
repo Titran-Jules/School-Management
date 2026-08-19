@@ -1,13 +1,13 @@
 import express, { Application } from "express";
 import cors from "cors";
 
-import studentRoutes from "./routes/student.route.js";
-import teacherRoutes from "./routes/teacher.route.js";
-import ueRoutes from "./routes/ue.route.js";
-import loginRoutes from "./routes/auth.route.js";
+import studentRoutes from "./routes/studentRoute.js";
+import teacherRoutes from "./routes/teacherRoute.js";
+import ueRoutes from "./routes/ueRoute.js";
+import loginRoutes from "./routes/authRoute.js";
 
-import { UserRole } from "./models/user.model.js";
-import { authGuard, roleGuard } from "./security/guards.security.js";
+import { UserRole } from "./models/userModel.js";
+import { authGuard, roleGuard } from "./security/guardSecurity.js";
 
 const app: Application = express();
 

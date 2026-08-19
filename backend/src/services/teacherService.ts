@@ -1,6 +1,6 @@
-import { TeacherRepository } from "../repositories/teacher.repository.js";
-import { Teacher, CreateTeacherDTO, UpdateTeacherDTO, TeacherResponseDTO } from "../models/teacher.model.js";
-import { PasswordSecurity } from "../security/password.security.js";
+import { TeacherRepository } from "../repositories/teacherRepository.js";
+import { Teacher, CreateTeacherDTO, UpdateTeacherDTO, TeacherResponseDTO } from "../models/teacherModel.js";
+import { PasswordSecurity } from "../security/passwordSecurity.js";
 
 export class TeacherService {
     constructor(private teacherRepository: TeacherRepository) {}

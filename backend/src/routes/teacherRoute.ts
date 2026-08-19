@@ -1,7 +1,7 @@
 import { Router } from 'express';
-import { TeacherController } from '../controllers/teacher.controller.js';
-import { validateBody } from '../middlewares/validate.middleware.js';
-import { teacherRegistrationSchema } from '../schemas/auth.schema.js';
+import { TeacherController } from '../controllers/teacherController.js';
+import { validateBody } from '../middlewares/validateMiddleware.js';
+import { teacherRegistrationSchema } from '../schemas/authSchema.js';
 
 const router = Router();
 const teacherController = new TeacherController();
