@@ -1,4 +1,4 @@
-import { User, CreateUserInDbDTO } from "../models/user.model.js";
+import { User, CreateUserInDbDTO } from "../models/userModel.js";
 import { db } from "../config/db.js";
 
 export class UserRepository {

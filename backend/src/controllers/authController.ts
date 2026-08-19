@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import { AuthRepository } from "../repositories/auth.repository.js";
-import { AuthService } from "../services/auth.service.js";
+import { AuthRepository } from "../repositories/authRepository.js";
+import { AuthService } from "../services/authService.js";
 
 const authRepository = new AuthRepository();
 const authService = new AuthService(authRepository);

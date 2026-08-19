@@ -1,6 +1,6 @@
-import { StudentRepository } from '../repositories/student.repository.js';
-import { Student, CreateStudentDTO, StudentResponseDTO, Group } from '../models/student.model.js';
-import { PasswordSecurity } from '../security/password.security.js';
+import { StudentRepository } from '../repositories/studentRepository.js';
+import { Student, CreateStudentDTO, StudentResponseDTO, Group } from '../models/studentModel.js';
+import { PasswordSecurity } from '../security/passwordSecurity.js';
 
 export class StudentService {
     constructor(private studentRepository: StudentRepository) {}

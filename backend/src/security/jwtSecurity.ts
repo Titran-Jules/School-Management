@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import { UserRole } from "../models/user.model.js";
+import { UserRole } from "../models/userModel.js";
 import "dotenv/config";
 
 export interface JwtPayload {

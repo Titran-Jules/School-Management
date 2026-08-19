@@ -1,5 +1,5 @@
 import { db } from "../config/db.js";
-import { Teacher, CreateTeacherDTO, UpdateTeacherDTO } from "../models/teacher.model.js";
+import { Teacher, CreateTeacherDTO, UpdateTeacherDTO } from "../models/teacherModel.js";
 
 export interface CreateTeacherInDbDTO extends Omit<CreateTeacherDTO, 'password'> {
     passwordHash: string;

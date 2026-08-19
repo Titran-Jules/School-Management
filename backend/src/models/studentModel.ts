@@ -1,4 +1,4 @@
-import { User, RegisterUserDTO } from "./user.model.js";
+import { User, RegisterUserDTO } from "./userModel.js";
 
 export type GradeLevel = 'L1' | 'L2' | 'L3';
 

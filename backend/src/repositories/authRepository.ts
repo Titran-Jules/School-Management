@@ -1,5 +1,5 @@
 import { db } from "../config/db.js";
-import { UserAuth } from "../models/user.model.js";
+import { UserAuth } from "../models/userModel.js";
 
 export class AuthRepository {
     async getUserAccount(ref: string): Promise<UserAuth | null> {

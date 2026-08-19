@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
-import { TeacherRepository } from '../repositories/teacher.repository.js';
-import { TeacherService } from '../services/teacher.service.js';
+import { TeacherRepository } from '../repositories/teacherRepository.js';
+import { TeacherService } from '../services/teacherService.js';
 
 const teacherRepository = new TeacherRepository();
 const teacherService = new TeacherService(teacherRepository);

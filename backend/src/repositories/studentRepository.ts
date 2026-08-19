@@ -1,4 +1,4 @@
-import { Student, CreateStudentDTO, CreateStudentInDbDTO, Group } from "../models/student.model.js";
+import { Student, CreateStudentDTO, CreateStudentInDbDTO, Group } from "../models/studentModel.js";
 import { db } from "../config/db.js";
 
 export class StudentRepository {

@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
-import { UeRepository } from '../repositories/ue.repository.js';
-import { UeService } from '../services/ue.service.js';
+import { UeRepository } from '../repositories/ueRepository.js';
+import { UeService } from '../services/ueService.js';
 
 const ueRepository = new UeRepository();
 const ueService = new UeService(ueRepository);

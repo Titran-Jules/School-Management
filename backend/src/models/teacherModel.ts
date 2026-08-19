@@ -1,5 +1,5 @@
-import { User, RegisterUserDTO } from "./user.model.js";
-import { UE } from "./ue.model.js";
+import { User, RegisterUserDTO } from "./userModel.js";
+import { UE } from "./ueModel.js";
 
 export interface Teacher extends User {
     ues: UE[];

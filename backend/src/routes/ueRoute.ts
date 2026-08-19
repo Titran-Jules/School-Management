@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { UeController } from '../controllers/ue.controller.js';
+import { UeController } from '../controllers/ueController.js';
 
 const router = Router();
 const ueController = new UeController();

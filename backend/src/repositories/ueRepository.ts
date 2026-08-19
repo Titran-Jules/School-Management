@@ -1,4 +1,4 @@
-import { UE, CreateUeDTO } from '../models/ue.model.js';
+import { UE, CreateUeDTO } from '../models/ueModel.js';
 import { db } from '../config/db.js';
 
 export class UeRepository {
