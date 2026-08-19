@@ -7,15 +7,22 @@ export interface JwtPayload {
     role: UserRole;
 }
 
-const JWT_SECRET = process.env.JWT_SECRET || 'no jwt secret found';
+const JWT_SECRET = process.env.JWT_SECRET;
+
+if (JWT_SECRET == undefined) {
+    throw new Error("JWT is missing in .env");
+}
+
+const secret: string = JWT_SECRET;
+
 const JWT_EXPIRES_IN = '1h';
 
 export const JwtSecurity = {
     generateToken(payload: JwtPayload): string {
-        return jwt.sign(payload, JWT_SECRET, { expiresIn: JWT_EXPIRES_IN });
+        return jwt.sign(payload, secret, { expiresIn: JWT_EXPIRES_IN });
     },
 
     verifyToken(token: string): JwtPayload {
-        return jwt.verify(token, JWT_SECRET) as unknown as JwtPayload;
+        return jwt.verify(token, secret) as unknown as JwtPayload;
     }
 }

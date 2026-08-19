@@ -1,4 +1,5 @@
 import React, { createContext, useState, useEffect, useContext, type ReactNode } from "react";
+import { API_URL } from "../services/api";
 
 export interface User {
   id: string;
@@ -34,7 +35,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   }, []);
 
   const login = async (ref: string, passwordPlain: string): Promise<User> => {
-    const response = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/login`, {
+    const response = await fetch(`${API_URL}/api/auth/login`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ ref, password: passwordPlain }),
