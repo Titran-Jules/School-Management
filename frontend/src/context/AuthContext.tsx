@@ -77,9 +77,9 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 
     const activeToken = token || localStorage.getItem('token');
     if (activeToken) {
-      headers['Authorization'] = `Bearer ${token}`;
+      headers['Authorization'] = `Bearer ${activeToken}`;
     }
-    
+
     const response = await fetch(url, { ...options, headers });
 
     if (response.status === 401 || response.status === 403) {
