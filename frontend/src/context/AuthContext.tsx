@@ -29,7 +29,11 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 
     if (storedToken && storedUser) {
       setToken(storedToken);
-      setUser(JSON.parse(storedUser));
+      try {
+        setUser(JSON.parse(storedUser));
+      } catch (e) {
+        logout();
+      }
     }
     setLoading(false);
   }, []);
@@ -41,16 +45,19 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       body: JSON.stringify({ ref, password: passwordPlain }),
     });
 
+    const contentType = response.headers.get('content-type');
+    if (!contentType || !contentType.includes('application/json')) {
+      throw new Error(`Error server (${response.status})`);
+    }
     const data = await response.json();
 
     if (!response.ok) {
       throw new Error(data.message || 'Connexion failed');
     }
-
-    setToken(data.token);
-    setUser(data.user);
     localStorage.setItem('token', data.token);
     localStorage.setItem('user', JSON.stringify(data.user));
+    setToken(data.token);
+    setUser(data.user);
 
     return data.user;
   };
@@ -68,10 +75,11 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       ...(options.headers as Record<string, string>),
     };
 
-    if (token) {
+    const activeToken = token || localStorage.getItem('token');
+    if (activeToken) {
       headers['Authorization'] = `Bearer ${token}`;
     }
-
+    
     const response = await fetch(url, { ...options, headers });
 
     if (response.status === 401 || response.status === 403) {
