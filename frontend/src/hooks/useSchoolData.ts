@@ -1,8 +1,10 @@
 import { useState, useEffect, useCallback } from 'react';
 import { api } from '../services/api';
 import type { Student, Teacher, UE } from '../types/types';
+import { useAuth } from '../context/AuthContext';
 
 export const useSchoolData = () => {
+  const {user, token} = useAuth();
   const [students, setStudents] = useState<Student[]>([]);
   const [teachers, setTeachers] = useState<Teacher[]>([]);
   const [ues, setUes] = useState<UE[]>([]);
@@ -10,27 +12,34 @@ export const useSchoolData = () => {
   const [error, setError] = useState<string | null>(null);
 
   const loadData = useCallback(async () => {
+    const activeToken = token || localStorage.getItem("token");
+    if (!activeToken) return;
     setLoading(true);
     setError(null);
     try {
-      const [sData, tData, uData] = await Promise.all([
+      const [sRes, tRes, uRes] = await Promise.allSettled([
         api.getStudents(),
         api.getTeachers(),
         api.getUes(),
       ]);
-      setStudents(sData);
-      setTeachers(tData);
-      setUes(uData);
+      if (sRes.status === 'fulfilled') setStudents(sRes.value);
+      if (tRes.status === 'fulfilled') setTeachers(tRes.value);
+      if (uRes.status === 'fulfilled') setUes(uRes.value);
+      if (sRes.status === 'rejected') {
+        setError(sRes.reason?.message || 'Erreur lors du chargement des étudiants');
+      }
     } catch (err: any) {
-      setError(err.message);
+      setError(err.message || 'Erreur réseau');
     } finally {
       setLoading(false);
     }
-  }, []);
+  }, [token]);
 
   useEffect(() => {
-    loadData();
-  }, [loadData]);
+    if (user){
+      loadData();
+    }
+  }, [user, loadData]);
 
   const createStudent = async (data: any) => {
     await api.createStudent(data);
