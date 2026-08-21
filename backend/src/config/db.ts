@@ -14,9 +14,7 @@ export const db = new Pool({
     ssl: isLocal ? false : { rejectUnauthorized: false }
 });
 
-db.on('connect', () => {
-    console.log("Successfuly connected to the db!");
-});
+db.on('connect', () => {});
 
 db.on('error', (err) => {
     console.error("Error PostgreSQL :", err);
